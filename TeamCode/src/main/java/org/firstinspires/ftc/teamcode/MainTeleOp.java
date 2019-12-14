@@ -6,11 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "MainTeleop")
 
-public class TeleOp extends LinearOpMode {
+public class MainTeleOp extends LinearOpMode {
 
     HardwareConfig robot = new HardwareConfig();
+
     @Override
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap); //giving robot hardware map config
 
 //        boolean toggleRot = true;
@@ -22,7 +23,7 @@ public class TeleOp extends LinearOpMode {
         waitForStart(); //when start is pressed opModeIsActive returns true; will return false when stopped
 
         //left stick controls direction, right stick controls rotation
-        while(opModeIsActive()){
+        while (opModeIsActive()) {
             double x1 = -gamepad1.left_stick_x;
             double y1 = gamepad1.left_stick_y;
             double x2 = gamepad1.right_stick_x;
@@ -31,7 +32,12 @@ public class TeleOp extends LinearOpMode {
             boolean rotYSub = gamepad1.dpad_up;
             boolean rotZAdd = gamepad1.dpad_right;
             boolean rotZSub = gamepad1.dpad_left;
-//
+
+            float closeClaw = gamepad1.right_trigger;
+            boolean openClaw = gamepad1.right_bumper;
+            boolean clawMovement = gamepad1.a;
+
+
 //            double intake = (double)gamepad1.left_trigger;
 //            boolean release = gamepad1.left_bumper;
 //
@@ -53,10 +59,10 @@ public class TeleOp extends LinearOpMode {
 
 //            boolean intake = (gamepad1.left_trigger > 0);
 
-            double bl = y1-x1+x2;
-            double br = y1+x1-x2;
-            double fl = y1-x1-x2;
-            double fr = y1+x1+x2;
+            double bl = y1 - x1 + x2;
+            double br = y1 + x1 - x2;
+            double fl = y1 - x1 - x2;
+            double fr = y1 + x1 + x2;
 
 
 
@@ -95,12 +101,12 @@ public class TeleOp extends LinearOpMode {
 //                robot.armBot.setPower(-1);
 //            }
 
-            if (rotYAdd) {
-                robot.armTop.setPower(0.6);
-            }
-            if (rotYSub) {
-                robot.armTop.setPower(-0.6);
-            }
+//            if (rotYAdd) {
+//                robot.armTop.setPower(0.6);
+//            }
+//            if (rotYSub) {
+//                robot.armTop.setPower(-0.6);
+//            }
 
 //            if (liftUp){
 //                robot.liftMotor.setPower(-1);
@@ -162,8 +168,15 @@ public class TeleOp extends LinearOpMode {
 //            robot.intakeServo.setPosition(0.5-(intake/2));
 
 
-
             robotDrive(bl, br, fl, fr);
+
+            if(openClaw) {
+                openClaw();
+            }
+
+            if(closeClaw > 0) {
+                closeClaw();
+            }
 
 
 
@@ -177,10 +190,55 @@ public class TeleOp extends LinearOpMode {
         }
     }
 
-    public void robotDrive(double bl, double br, double fl, double fr){
+    public void robotDrive(double bl, double br, double fl, double fr) {
         robot.mBackLeft.setPower(bl);
         robot.mBackRight.setPower(br);
         robot.mFrontLeft.setPower(fl);
         robot.mFrontRight.setPower(fr);
     }
+
+    public void forward (double power) {
+        robot.mBackLeft.setPower(power);
+        robot.mBackRight.setPower(-power);
+    }
+
+    public void backward (double power) {
+        robot.mFrontLeft.setPower(-power);
+        robot.mFrontRight.setPower(power);
+    }
+
+    public void shiftLeft (double power) {
+        robot.mBackRight.setPower(power);
+        robot.mFrontRight.setPower(-power);
+    }
+
+    public void shiftRight (double power) {
+        robot.mBackLeft.setPower(-power);
+        robot.mFrontLeft.setPower(power);
+    }
+
+    public void turnRight (double power) {
+        robot.mBackLeft.setPower(-power);
+        robot.mFrontLeft.setPower(-power);
+        robot.mBackRight.setPower(-power);
+        robot.mFrontRight.setPower(-power);
+    }
+
+    public void turnLeft (double power) {
+        robot.mBackLeft.setPower(power);
+        robot.mFrontLeft.setPower(power);
+        robot.mBackRight.setPower(power);
+        robot.mFrontRight.setPower(power);
+    }
+
+    public void openClaw () {
+        robot.leftClawServo.setPosition(0);
+        robot.rightClawServo.setPosition(0);
+    }
+
+    public void closeClaw () {
+        robot.leftClawServo.setPosition(-85);
+        robot.rightClawServo.setPosition(85);
+    }
+
 }
