@@ -241,11 +241,11 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     public void raiseClaw() {
-        robot.clawPos.setPosition(0);
+        robot.flipClaw.setPosition(0);
     }
 
     public void dropClaw () {
-        robot.clawPos.setPosition(160);
+        robot.flipClaw.setPosition(160);
 
     }
 

@@ -15,7 +15,7 @@ public class HardwareConfig {
     DcMotor mBackLeft;
     Servo leftClawServo;
     Servo rightClawServo;
-    Servo clawPos;
+    Servo flipClaw;
     //    DcMotor markerMotor;
 //    DcMotor armTop;
 //    DcMotor armBot;
@@ -40,7 +40,7 @@ public class HardwareConfig {
         mBackLeft = hw.dcMotor.get("backLeft");
         leftClawServo = hw.servo.get("leftClaw");
         rightClawServo = hw.servo.get("rightClaw");
-        clawPos = hw.servo.get("clawPos");
+        flipClaw = hw.servo.get("flipClaw");
 //        armTop = hw.dcMotor.get("armTop");
 //        armBot = hw.dcMotor.get("armBottom");
 //        markerMotor = hw.dcMotor.get("markerMotor");
