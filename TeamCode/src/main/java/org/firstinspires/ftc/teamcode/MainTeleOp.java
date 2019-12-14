@@ -35,7 +35,8 @@ public class MainTeleOp extends LinearOpMode {
 
             float closeClaw = gamepad1.right_trigger;
             boolean openClaw = gamepad1.right_bumper;
-            boolean clawMovement = gamepad1.a;
+            boolean dropClaw = gamepad1.a;
+            boolean raiseClaw = gamepad1.b;
 
 
 //            double intake = (double)gamepad1.left_trigger;
@@ -178,6 +179,14 @@ public class MainTeleOp extends LinearOpMode {
                 closeClaw();
             }
 
+            if(dropClaw) {
+                dropClaw();
+            }
+
+            if(raiseClaw) {
+                raiseClaw();
+            }
+
 
 
 /*
@@ -229,6 +238,15 @@ public class MainTeleOp extends LinearOpMode {
         robot.mFrontLeft.setPower(power);
         robot.mBackRight.setPower(power);
         robot.mFrontRight.setPower(power);
+    }
+
+    public void raiseClaw() {
+        robot.clawPos.setPosition(0);
+    }
+
+    public void dropClaw () {
+        robot.clawPos.setPosition(160);
+
     }
 
     public void openClaw () {
