@@ -27,10 +27,32 @@ public class AutonomousV1 extends LinearOpMode{
 
         waitForStart();
 
+        dropClaw();
+
+        forward(pow, 3000);
+        pause(500);
+        closeClaw();
+        pause(1000);
+        backward(pow, 2000);
+        pause(200);
+        turnRight(pow, 1500); //experiment for amount of time for 90 degrees
+        pause(200);
+        forward(pow, 4000);
+        pause(200);
+        openClaw();
+
+
 
     }
 
-    double POW = 1.0;
+    double pow = 1.0;
+
+    public void pause (double time) {
+        runtime.reset();
+        if (opModeIsActive() && (runtime.seconds() >= time)) {
+            return;
+        }
+    }
 
     public void forward (double power, double time) {
         runtime.reset();
@@ -102,11 +124,11 @@ public class AutonomousV1 extends LinearOpMode{
 //    }
 
     public void raiseClaw() {
-        robot.clawPos.setPosition(0);
+        robot.flipClaw.setPosition(0);
     }
 
     public void dropClaw () {
-        robot.clawPos.setPosition(160);
+        robot.flipClaw.setPosition(160);
 
     }
 
