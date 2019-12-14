@@ -14,7 +14,7 @@ import java.util.List;
 
 @Autonomous(name = "AutonomousV1")
 
-public class AutonomousV1 extends LinearOpMode{
+public class AutonomousBlockRight extends LinearOpMode{
     HardwareConfig robot = new HardwareConfig();
     private ElapsedTime     runtime = new ElapsedTime();
 
