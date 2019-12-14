@@ -29,6 +29,7 @@ public class AutonomousV1 extends LinearOpMode{
 
         dropClaw();
 
+        //auto for right side w/ blocks
         forward(pow, 3000);
         pause(500);
         closeClaw();
