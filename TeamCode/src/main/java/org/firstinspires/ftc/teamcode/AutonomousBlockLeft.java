@@ -30,23 +30,87 @@ public class AutonomousBlockLeft extends LinearOpMode{
         dropClaw();
 
         //auto for right side w/ blocks
-        forward(pow, 3000);
-        pause(500);
-        closeClaw();
-        pause(1000);
-        backward(pow, 2000);
-        pause(200);
-        turnLeft(pow, 1500); //experiment for amount of time for 90 degrees
-        pause(200);
-        forward(pow, 4000);
-        pause(200);
-        openClaw();
+//        forward(pow, 3000);
+//        pause(500);
+//        closeClaw();
+//        pause(1000);
+//        backward(pow, 2000);
+//        pause(200);
+//        turnLeft(pow, 1500); //experiment for amount of time for 90 degrees
+//        pause(200);
+//        forward(pow, 4000);
+//        pause(200);
+//        openClaw();
+
+        strafeForwardTime(1.0, 2000.0);
+
 
 
 
     }
 
     double pow = 1.0;
+
+    private void strafeForwardTime(double power, double time) {
+        //negative power: strafe back, positive power: strafe forward
+        double y1 = -power;
+
+        double bl = y1;
+        double br = y1;
+        double fl = y1;
+        double fr = y1;
+
+        runtime.reset();
+        while (runtime.seconds() < time) {
+            robot.mBackLeft.setPower(bl);
+            robot.mBackRight.setPower(br);
+            robot.mFrontLeft.setPower(fl);
+            robot.mFrontRight.setPower(fr);
+        }
+        runtime.reset();
+
+        robot.mBackLeft.setPower(0);
+        robot.mBackRight.setPower(0);
+        robot.mFrontLeft.setPower(0);
+        robot.mFrontRight.setPower(0);
+
+    }
+
+    private void strafeSideTime(double power, double time) {
+
+        //negative power: strafe left, positive power: strafe right
+        double x2 = power;
+
+        double bl = x2;
+        double br = -x2;
+        double fl = -x2;
+        double fr = x2;
+
+        runtime.reset();
+        while (runtime.seconds() < time) {
+            robot.mBackLeft.setPower(bl);
+            robot.mBackRight.setPower(br);
+            robot.mFrontLeft.setPower(fl);
+            robot.mFrontRight.setPower(fr);
+        }
+        runtime.reset();
+
+        robot.mBackLeft.setPower(0);
+        robot.mBackRight.setPower(0);
+        robot.mFrontLeft.setPower(0);
+        robot.mFrontRight.setPower(0);
+
+    }
+
+    public void robotDrive(double bl, double br, double fl, double fr, double time) {
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.mBackLeft.setPower(bl);
+            robot.mBackRight.setPower(br);
+            robot.mFrontLeft.setPower(fl);
+            robot.mFrontRight.setPower(fr);
+        }
+    }
 
     public void pause (double time) {
         runtime.reset();

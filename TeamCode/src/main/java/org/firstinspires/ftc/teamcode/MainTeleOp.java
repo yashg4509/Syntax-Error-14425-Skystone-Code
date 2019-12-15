@@ -31,11 +31,12 @@ public class MainTeleOp extends LinearOpMode {
 
             boolean closeClaw = gamepad1.left_bumper;
             boolean openClaw = gamepad1.right_bumper;
-            boolean dropClaw = gamepad1.a;
-            boolean raiseClaw = gamepad1.b;
+
+            boolean dropClaw = gamepad1.x;
+            boolean raiseClaw = gamepad1.y;
             
-            boolean forwardLinActuator = gamepad1.x;
-            boolean backLinActuator = gamepad1.y;
+            boolean forwardLinActuator = gamepad1.a;
+            boolean backLinActuator = gamepad1.b;
 
 
 
@@ -70,10 +71,10 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     public void robotDrive(double bl, double br, double fl, double fr) {
-        robot.mBackLeft.setPower(bl);
-        robot.mBackRight.setPower(br);
-        robot.mFrontLeft.setPower(fl);
-        robot.mFrontRight.setPower(fr);
+        robot.mBackLeft.setPower(-bl);
+        robot.mBackRight.setPower(-br);
+        robot.mFrontLeft.setPower(-fl);
+        robot.mFrontRight.setPower(-fr);
     }
 
     public void forward (double power) {
