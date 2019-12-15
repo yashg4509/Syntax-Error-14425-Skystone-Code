@@ -119,7 +119,7 @@ public class HolonomicDrive extends LinearOpMode {
 
 
 //            if (intake){
-//                robot.intakeServo.setPower(-1);
+                robot.intakeServo.setPower(-1);
 //            }
 
 

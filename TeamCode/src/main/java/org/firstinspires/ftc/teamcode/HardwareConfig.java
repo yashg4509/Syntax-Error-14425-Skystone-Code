@@ -13,6 +13,8 @@ public class HardwareConfig {
     DcMotor mBackRight;
     DcMotor mFrontLeft;
     DcMotor mBackLeft;
+    DcMotor rightLinearActuator;
+    DcMotor leftLinearActuator;
     Servo leftClawServo;
     Servo rightClawServo;
     Servo flipClaw;
@@ -38,6 +40,8 @@ public class HardwareConfig {
         mBackRight = hw.dcMotor.get("backRight");
         mFrontLeft = hw.dcMotor.get("frontLeft");
         mBackLeft = hw.dcMotor.get("backLeft");
+        rightLinearActuator = hw.dcMotor.get("rightLinearActuator");
+        leftLinearActuator = hw.dcMotor.get("leftLinearActuator");
         leftClawServo = hw.servo.get("leftClaw");
         rightClawServo = hw.servo.get("rightClaw");
         flipClaw = hw.servo.get("flipClaw");
@@ -60,12 +64,16 @@ public class HardwareConfig {
         mBackRight.setPower(0.0);
         mFrontLeft.setPower(0.0);
         mBackLeft.setPower(0.0);
+        leftLinearActuator.setPower(0.0);
+        rightLinearActuator.setPower(0.0);
 
         //make the robot brake when there is no input
         mBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 //        armTop.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //        armBot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

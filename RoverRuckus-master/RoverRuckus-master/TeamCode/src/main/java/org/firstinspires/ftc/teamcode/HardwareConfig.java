@@ -35,15 +35,18 @@ public class HardwareConfig {
         mBackRight = hw.dcMotor.get("backRight");
         mFrontLeft = hw.dcMotor.get("frontLeft");
         mBackLeft = hw.dcMotor.get("backLeft");
-        armTop = hw.dcMotor.get("armTop");
-        armBot = hw.dcMotor.get("armBottom");
-        markerMotor = hw.dcMotor.get("markerMotor");
-        liftMotor = hw.dcMotor.get("liftMotor");
+//        armTop = hw.dcMotor.get("armTop");
+//        armBot = hw.dcMotor.get("armBottom");
+//        markerMotor = hw.dcMotor.get("markerMotor");
+//        liftMotor = hw.dcMotor.get("liftMotor");
+
+        servoClawOne = hw.servo.get("servoClawOne");
+        servoClawTwo = hw.servo.get("servoClawTwo");
 
         //armClaw = hw.dcMotor.get("claw");
         /*servoClawBot = hw.servo.get("servoClawBottom");
         servoClawTop = hw.servo.get("servoClawTop");
-        servoClawOne = hw.servo.get("servoClawOne");
+        servoClawOne = hw.servo.get("servoClawOne")
         servoClawTwo = hw.servo.get("servoClawTwo");*/
 
         intakeServo = hw.servo.get("succ");
@@ -61,10 +64,10 @@ public class HardwareConfig {
         mFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        armTop.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        armBot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        armTop.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        armBot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //need to reverse one side so the robot can move forward
         mFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);

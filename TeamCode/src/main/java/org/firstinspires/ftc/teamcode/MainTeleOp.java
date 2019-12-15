@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name = "MainTeleop")
@@ -28,7 +29,7 @@ public class MainTeleOp extends LinearOpMode {
             boolean rotZAdd = gamepad1.dpad_right;
             boolean rotZSub = gamepad1.dpad_left;
 
-            float closeClaw = gamepad1.right_trigger;
+            boolean closeClaw = gamepad1.left_bumper;
             boolean openClaw = gamepad1.right_bumper;
             boolean dropClaw = gamepad1.a;
             boolean raiseClaw = gamepad1.b;
@@ -51,7 +52,7 @@ public class MainTeleOp extends LinearOpMode {
                 openClaw();
             }
 
-            if(closeClaw > 0) {
+            if(closeClaw) {
                 closeClaw();
             }
 
@@ -110,22 +111,22 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     public void raiseClaw() {
-        robot.flipClaw.setPosition(0);
+        robot.flipClaw.setDirection(Servo.Direction.FORWARD);
     }
 
     public void dropClaw () {
-        robot.flipClaw.setPosition(160);
+        robot.flipClaw.setDirection(Servo.Direction.REVERSE);
 
     }
 
     public void openClaw () {
-        robot.leftClawServo.setPosition(0);
-        robot.rightClawServo.setPosition(0);
+        robot.leftClawServo.setDirection(Servo.Direction.FORWARD);
+        robot.rightClawServo.setDirection(Servo.Direction.REVERSE);
     }
 
     public void closeClaw () {
-        robot.leftClawServo.setPosition(-85);
-        robot.rightClawServo.setPosition(85);
+        robot.leftClawServo.setDirection(Servo.Direction.REVERSE);
+        robot.rightClawServo.setDirection(Servo.Direction.FORWARD);
     }
 
     public void forwardLinearActuator(double power) {

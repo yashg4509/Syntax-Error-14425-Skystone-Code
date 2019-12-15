@@ -59,8 +59,14 @@ public class AutonomousBlockLeft extends LinearOpMode{
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.mBackLeft.setPower(power);
-            robot.mBackRight.setPower(-power);
+            robot.mBackRight.setPower(power);
         }
+
+//        runtime.reset();
+//        while (opModeIsActive() && (runtime.seconds() < time)) {
+//            robot.mBackLeft.setPower(power);
+//            robot.mBackRight.setPower(-power);
+//        }
     }
 
     public void backward (double power, double time) {
