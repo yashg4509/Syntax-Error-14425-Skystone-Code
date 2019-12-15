@@ -110,25 +110,36 @@ public class MainTeleOp extends LinearOpMode {
         robot.mFrontRight.setPower(power);
     }
 
+
     public void raiseClaw() {
-        robot.flipClaw.setDirection(Servo.Direction.FORWARD);
+        robot.flipClaw.setPosition(1);
     }
 
     public void dropClaw () {
-        robot.flipClaw.setDirection(Servo.Direction.REVERSE);
+        robot.flipClaw.setPosition(0);
 
     }
+
+//    public void openClaw () {
+//        robot.leftClawServo.setDirection(Servo.Direction.FORWARD);
+//        robot.rightClawServo.setDirection(Servo.Direction.REVERSE);
+//    }
 
     public void openClaw () {
-        robot.leftClawServo.setDirection(Servo.Direction.FORWARD);
-        robot.rightClawServo.setDirection(Servo.Direction.REVERSE);
+        robot.leftClawServo.setPosition(1);
+        robot.rightClawServo.setPosition(0);
     }
+
+//    public void closeClaw () {
+//        robot.leftClawServo.setDirection(Servo.Direction.REVERSE);
+//        robot.rightClawServo.setDirection(Servo.Direction.FORWARD);
+//    }
 
     public void closeClaw () {
-        robot.leftClawServo.setDirection(Servo.Direction.REVERSE);
-        robot.rightClawServo.setDirection(Servo.Direction.FORWARD);
+        robot.leftClawServo.setPosition(0);
+        robot.rightClawServo.setPosition(1);
     }
-
+    
     public void forwardLinearActuator(double power) {
 
     }
