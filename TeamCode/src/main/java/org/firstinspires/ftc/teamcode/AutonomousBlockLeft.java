@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name = "AutonomousV1")
+@Autonomous(name = "AutonomousBlockLeft")
 
 public class AutonomousBlockLeft extends LinearOpMode{
     HardwareConfig robot = new HardwareConfig();
