@@ -27,8 +27,6 @@ public class AutonomousBlockLeft extends LinearOpMode{
 
         waitForStart();
 
-        dropClaw();
-
         //auto for right side w/ blocks
 //        forward(pow, 3000);
 //        pause(500);
@@ -42,7 +40,7 @@ public class AutonomousBlockLeft extends LinearOpMode{
 //        pause(200);
 //        openClaw();
 
-        strafeForwardTime(1.0, 2000.0);
+        strafeForwardTime(1.0, 1.5);
 
 
 
@@ -62,12 +60,11 @@ public class AutonomousBlockLeft extends LinearOpMode{
 
         runtime.reset();
         while (runtime.seconds() < time) {
-            robot.mBackLeft.setPower(bl);
-            robot.mBackRight.setPower(br);
-            robot.mFrontLeft.setPower(fl);
-            robot.mFrontRight.setPower(fr);
+            robot.mBackLeft.setPower(-bl);
+            robot.mBackRight.setPower(-br);
+            robot.mFrontLeft.setPower(-fl);
+            robot.mFrontRight.setPower(-fr);
         }
-        runtime.reset();
 
         robot.mBackLeft.setPower(0);
         robot.mBackRight.setPower(0);
