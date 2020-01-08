@@ -65,6 +65,14 @@ public class MainTeleOp extends LinearOpMode {
                 raiseClaw();
             }
 
+            if(forwardLinActuator) {
+                scissorMove(2.0);
+            }
+
+            if(backLinActuator) {
+                scissorMove(-2.0);
+            }
+
 
 
         }
@@ -141,7 +149,9 @@ public class MainTeleOp extends LinearOpMode {
         robot.rightClawServo.setPosition(Servo.MAX_POSITION);
     }
 
-    public void forwardLinearActuator(double power) {
+    public void scissorMove(double power) {              //still need to check this method not sure which way the motors are supposed to turn
+        robot.leftLinearActuator.setPower(power);
+        robot.rightLinearActuator.setPower(-power);
 
     }
 
