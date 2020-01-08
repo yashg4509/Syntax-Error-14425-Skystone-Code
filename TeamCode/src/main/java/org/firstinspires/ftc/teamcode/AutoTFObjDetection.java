@@ -38,7 +38,7 @@ public class AutoTFObjDetection extends LinearOpMode {
      */
     private static final String VUFORIA_KEY =
             "ATCuYNf/////AAABmZa/DKuGq0G0p8X+35HS1RYv9KBP8kSXml5sMxZZzWCe+5UCtQsqGCEYUSfRk//1M+8f9Shi+IW5MOPKZrb9XvFKgKzh2jFbT2lsmNhPyfogRSdDiyvz9a0Raj5N/5koKhkTmU1m9IyIjsPs5LqjlcTdwUw/EddgXHkdslgeiGIqojAOP2XPn1iYiqDISkUqd34NEIvI+8fVMQ4ETbsIRV4vknjZg730MnhEnrSfw/miXSHYFnnHncTCTpF6DGh57kAamYciV2o0nIuYXR8O9wv2AE2tfaLDHNQYDWWrDsX/3JhFtIUZ0uz42ySTFlrdIwAxNfnsrVwheTl8pKfrRJmLYWPQWKx2Gb7k/f7j/Cqe";
-     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
+     /* {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
      */
     private VuforiaLocalizer vuforia;
