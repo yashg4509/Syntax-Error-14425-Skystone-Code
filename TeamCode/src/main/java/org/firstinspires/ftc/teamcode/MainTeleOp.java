@@ -15,7 +15,6 @@ public class MainTeleOp extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap); //giving robot hardware map config
 
-
         waitForStart(); //when start is pressed opModeIsActive returns true; will return false when stopped
 
         //left stick controls direction, right stick controls rotation
@@ -35,10 +34,11 @@ public class MainTeleOp extends LinearOpMode {
             boolean dropClaw = gamepad1.x;
             boolean raiseClaw = gamepad1.y;
             
-            boolean forwardLinActuator = gamepad1.a;
-            boolean backLinActuator = gamepad1.b;
+            //boolean forwardLinActuator = gamepad1.a;
+            //boolean backLinActuator = gamepad1.b;
 
-
+            boolean OneLinActuator_Up = gamepad1.b;
+            boolean OneLinActuator_Down = gamepad1.a;
 
             double bl = y1 - x1 + x2;
             double br = y1 + x1 - x2;
@@ -72,7 +72,13 @@ public class MainTeleOp extends LinearOpMode {
             if(backLinActuator) {
                 scissorMove(-2.0);
             }
-
+            
+            if(OneLinActuator_Up){
+                actuatorMove(2.0);
+            }
+            if(OneLinActuator_Down){
+                actuatorMove(-2.0);
+            }
 
 
         }
@@ -126,7 +132,6 @@ public class MainTeleOp extends LinearOpMode {
 
     public void dropClaw () {
         robot.flipClaw.setPosition(Servo.MIN_POSITION);
-
     }
 
 //    public void openClaw () {
@@ -152,7 +157,11 @@ public class MainTeleOp extends LinearOpMode {
     public void scissorMove(double power) {              //still need to check this method not sure which way the motors are supposed to turn
         robot.leftLinearActuator.setPower(power);
         robot.rightLinearActuator.setPower(-power);
+    }
 
+    //this method is yet to be tested
+    public void actuatorMove(double power){
+        robot.oneLinearActuator.setPower(power);
     }
 
 }

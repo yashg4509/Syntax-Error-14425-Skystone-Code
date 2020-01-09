@@ -45,6 +45,10 @@ public class HardwareConfig {
         leftClawServo = hw.servo.get("leftClaw");
         rightClawServo = hw.servo.get("rightClaw");
         flipClaw = hw.servo.get("flipClaw");
+
+        oneLinearActuator = hw.dcMotor.get("oneLinearActuator");
+
+
 //        armTop = hw.dcMotor.get("armTop");
 //        armBot = hw.dcMotor.get("armBottom");
 //        markerMotor = hw.dcMotor.get("markerMotor");
@@ -67,6 +71,8 @@ public class HardwareConfig {
         leftLinearActuator.setPower(0.0);
         rightLinearActuator.setPower(0.0);
 
+        oneLinearActuator.setPower(0.0);
+
         //make the robot brake when there is no input
         mBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -74,6 +80,8 @@ public class HardwareConfig {
         mFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        oneLinearActuator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 //        armTop.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //        armBot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
