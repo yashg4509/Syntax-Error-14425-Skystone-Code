@@ -37,8 +37,8 @@ public class MainTeleOp extends LinearOpMode {
             //boolean forwardLinActuator = gamepad1.a;
             //boolean backLinActuator = gamepad1.b;
 
-            boolean OneLinActuator_Up = gamepad1.b;
-            boolean OneLinActuator_Down = gamepad1.a;
+            boolean LinActuator_Up = gamepad1.b;
+            boolean LinActuator_Down = gamepad1.a;
 
             double bl = y1 - x1 + x2;
             double br = y1 + x1 - x2;
@@ -65,21 +65,13 @@ public class MainTeleOp extends LinearOpMode {
                 raiseClaw();
             }
 
-            if(forwardLinActuator) {
+            if(LinActuator_Up) {
                 scissorMove(2.0);
             }
 
-            if(backLinActuator) {
+            if(LinActuator_Down) {
                 scissorMove(-2.0);
             }
-            
-            if(OneLinActuator_Up){
-                actuatorMove(2.0);
-            }
-            if(OneLinActuator_Down){
-                actuatorMove(-2.0);
-            }
-
 
         }
     }
@@ -140,8 +132,7 @@ public class MainTeleOp extends LinearOpMode {
 //    }
 
     public void openClaw () {
-        robot.leftClawServo.setPosition(Servo.MAX_POSITION);
-        robot.rightClawServo.setPosition(Servo.MIN_POSITION);
+        robot.ClawServo.setPosition(Servo.MAX_POSITION);
     }
 
 //    public void closeClaw () {
@@ -150,18 +141,11 @@ public class MainTeleOp extends LinearOpMode {
 //    }
 
     public void closeClaw () {
-        robot.leftClawServo.setPosition(Servo.MIN_POSITION);
-        robot.rightClawServo.setPosition(Servo.MAX_POSITION);
+        robot.ClawServo.setPosition(Servo.MIN_POSITION);
     }
 
     public void scissorMove(double power) {              //still need to check this method not sure which way the motors are supposed to turn
-        robot.leftLinearActuator.setPower(power);
-        robot.rightLinearActuator.setPower(-power);
-    }
-
-    //this method is yet to be tested
-    public void actuatorMove(double power){
-        robot.oneLinearActuator.setPower(power);
+        robot.LinearActuator.setPower(-power);
     }
 
 }
