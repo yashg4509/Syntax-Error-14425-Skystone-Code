@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -201,13 +202,12 @@ public class AutonomousBlockLeft extends LinearOpMode{
     }
 
     public void openClaw () {
-        robot.leftClawServo.setPosition(0);
-        robot.rightClawServo.setPosition(0);
+        robot.ClawServo.setPosition(Servo.MAX_POSITION);
     }
 
     public void closeClaw () {
-        robot.leftClawServo.setPosition(-85);
-        robot.rightClawServo.setPosition(85);
+        robot.ClawServo.setPosition(Servo.MIN_POSITION);
+
     }
 }
 

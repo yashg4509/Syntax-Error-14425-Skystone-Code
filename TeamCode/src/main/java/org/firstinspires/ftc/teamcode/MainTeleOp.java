@@ -132,7 +132,7 @@ public class MainTeleOp extends LinearOpMode {
 //    }
 
     public void openClaw () {
-        robot.ClawServo.setPosition(Servo.MAX_POSITION);
+        robot.ClawServo.setPosition(0.5);
     }
 
 //    public void closeClaw () {
@@ -141,7 +141,7 @@ public class MainTeleOp extends LinearOpMode {
 //    }
 
     public void closeClaw () {
-        robot.ClawServo.setPosition(Servo.MIN_POSITION);
+        robot.ClawServo.setPosition(0.0);
     }
 
     public void scissorMove(double power) {              //still need to check this method not sure which way the motors are supposed to turn

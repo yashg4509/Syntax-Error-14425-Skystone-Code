@@ -2,34 +2,40 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-//import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "ServoTesting")
+@TeleOp(name = "ServoTesting")
 
 public class ServoTesting extends LinearOpMode {
 
     HardwareConfig robot = new HardwareConfig();
 
-    @Override
+
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
 
         waitForStart();
 
-        while(opModeIsActive()) {
-//            robot.leftClawServo.setDirection(Servo.Direction.REVERSE);
-//            robot.rightClawServo.setDirection(Servo.Direction.FORWARD);
-//            robot.leftClawServo.setDirection(Servo.Direction.FORWARD);
-//            robot.rightClawServo.setDirection(Servo.Direction.REVERSE);
-
-            telemetry.addData("Status", "running servo program");
+        double tgtPower = 0;
+        while (opModeIsActive()) {
+            tgtPower = -this.gamepad1.left_stick_y;
+            // check to see if we need to move the servo.
+            if(gamepad1.y) {
+                // move to 0 degrees.
+                robot.ClawServo.setPosition(0);
+            } else if (gamepad1.x || gamepad1.b) {
+                // move to 90 degrees.
+                robot.ClawServo.setPosition(0.5);
+            } else if (gamepad1.a) {
+                // move to 180 degrees.
+                robot.ClawServo.setPosition(1);
+            }
+            telemetry.addData("Servo Position", robot.ClawServo.getPosition());
+            telemetry.addData("Target Power", tgtPower);
+            telemetry.addData("Status", "Running");
             telemetry.update();
 
-            robot.leftClawServo.setPosition(1);
-            robot.rightClawServo.setPosition(1);
-            robot.leftClawServo.setPosition(0);
-            robot.rightClawServo.setPosition(0);
         }
     }
 
