@@ -5,18 +5,66 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
-@TeleOp(name = "MainTeleop")
+@TeleOp(name="TeleOp: MecanumTestv1", group="Linear Opmode")
 
 public class MainTeleOp extends LinearOpMode {
 
-    HardwareConfig robot = new HardwareConfig();
+    Hardware_MecanumTest robot = new Hardware_MecanumTest();
+    HardwareConfig robot2 = new HardwareConfig();
 
     @Override
-    public void runOpMode() throws InterruptedException {
-        robot.init(hardwareMap); //giving robot hardware map config
+    public void runOpMode() {
+        robot.init(hardwareMap); //giv
+        // ing robot hardware map config
+
 
         waitForStart(); //when start is pressed opModeIsActive returns true; will return false when stopped
+        while (opModeIsActive()) {
 
+            /*
+            Expansion Hub 1:
+            port 0 = right back
+            port 1 = left back
+            port 2: right front
+            port 3: left front
+            */
+
+            //rotation - right joystick
+            double rightX = -gamepad1.right_stick_x;
+            //movement - left joystick
+            double leftX = gamepad1.left_stick_x;
+            double leftY = -gamepad1.left_stick_y;
+            double MIN_POSITION = 0;
+            double MAX_POSITION = 1;
+
+
+            //driving
+            robot.LFmotor.setPower(leftY + rightX + leftX);
+            robot.RFmotor.setPower(leftY - rightX - leftX);
+            robot.LBmotor.setPower(leftY + rightX - leftX);
+            robot.RBmotor.setPower(leftY - rightX + leftX);
+
+
+            /* COMPLIANT WHEELS - left trigger/right trigger */
+            double wheelOuttake = gamepad1.right_trigger;
+            double wheelIntake = -gamepad1.left_trigger;
+            //
+            if (gamepad1.left_trigger > 0) {
+                robot.LCompliantmotor.setPower(wheelIntake);
+                robot.RCompliantmotor.setPower(wheelIntake);
+            } else if (gamepad1.right_trigger > 0) {
+                robot.LCompliantmotor.setPower(wheelOuttake);
+                robot.RCompliantmotor.setPower(wheelOuttake);
+            } else {
+                robot.LCompliantmotor.setPower(0);
+                robot.RCompliantmotor.setPower(0);
+            }
+        }
+    }
+}
+
+
+/*
         //left stick controls direction, right stick controls rotation
         while (opModeIsActive()) {
             double x1 = -gamepad1.left_stick_x;
@@ -33,12 +81,11 @@ public class MainTeleOp extends LinearOpMode {
 
             boolean dropClaw = gamepad1.x;
             boolean raiseClaw = gamepad1.y;
-            
-            //boolean forwardLinActuator = gamepad1.a;
-            //boolean backLinActuator = gamepad1.b;
 
-            boolean LinActuator_Up = gamepad1.b;
-            boolean LinActuator_Down = gamepad1.a;
+            boolean forwardLinActuator = gamepad1.a;
+            boolean backLinActuator = gamepad1.b;
+
+
 
             double bl = y1 - x1 + x2;
             double br = y1 + x1 - x2;
@@ -65,12 +112,22 @@ public class MainTeleOp extends LinearOpMode {
                 raiseClaw();
             }
 
-            if(LinActuator_Up) {
-                scissorMove(2.0);
-            }
+        if (forwardLinActuator) {
+            robot.rightLinearActuator.setPower(1);
+            robot.leftLinearActuator.setPower(1);
+        }
+        else {
+            robot.rightLinearActuator.setPower(0);
+            robot.leftLinearActuator.setPower(0);
+        }
 
-            if(LinActuator_Down) {
-                scissorMove(-2.0);
+            if (backLinActuator) {
+                robot.rightLinearActuator.setPower(-1);
+                robot.leftLinearActuator.setPower(-1);
+            }
+            else {
+                robot.rightLinearActuator.setPower(0);
+                robot.leftLinearActuator.setPower(0);
             }
 
         }
@@ -124,6 +181,7 @@ public class MainTeleOp extends LinearOpMode {
 
     public void dropClaw () {
         robot.flipClaw.setPosition(Servo.MIN_POSITION);
+
     }
 
 //    public void openClaw () {
@@ -132,7 +190,8 @@ public class MainTeleOp extends LinearOpMode {
 //    }
 
     public void openClaw () {
-        robot.ClawServo.setPosition(0.5);
+        robot.leftClawServo.setPosition(Servo.MAX_POSITION);
+        robot.rightClawServo.setPosition(Servo.MIN_POSITION);
     }
 
 //    public void closeClaw () {
@@ -141,11 +200,13 @@ public class MainTeleOp extends LinearOpMode {
 //    }
 
     public void closeClaw () {
-        robot.ClawServo.setPosition(0.0);
+        robot.leftClawServo.setPosition(Servo.MIN_POSITION);
+        robot.rightClawServo.setPosition(Servo.MAX_POSITION);
     }
 
-    public void scissorMove(double power) {              //still need to check this method not sure which way the motors are supposed to turn
-        robot.LinearActuator.setPower(-power);
+    public void forwardLinearActuator(double power) {
+
     }
 
 }
+*/
