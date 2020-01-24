@@ -192,15 +192,15 @@ public class AutonomousBlockLeft extends LinearOpMode{
 //        robot.mFrontRight.setPower(power);
 //    }
 
-    public void raiseClaw() {
-        robot.flipClaw.setPosition(0);
-    }
-
-    public void dropClaw () {
-        robot.flipClaw.setPosition(160);
-
-    }
-
+//    public void raiseClaw() {
+//        robot.flipClaw.setPosition(0);
+//    }
+//
+//    public void dropClaw () {
+//        robot.flipClaw.setPosition(160);
+//
+//    }
+//
     public void openClaw () {
         robot.ClawServo.setPosition(Servo.MAX_POSITION);
     }
