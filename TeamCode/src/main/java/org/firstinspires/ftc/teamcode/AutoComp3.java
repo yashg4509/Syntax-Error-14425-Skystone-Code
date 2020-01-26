@@ -4,18 +4,20 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="RebIsMad")
+@Autonomous(name="AutoComp3")
 
-public class RebIsMad extends LinearOpMode {
+public class AutoComp3 extends LinearOpMode {
     ElapsedTime runtime = new ElapsedTime();
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
     int power = 1;
 
     @Override
     public void runOpMode() {
-        while (opModeIsActive()) {
-            waitForStart();
+        robot.init(hardwareMap);
 
+        waitForStart();
+
+        while (opModeIsActive()) {
             strafeForwardTime(power, 1.75);
             rotate(-0.375);
             strafeForwardTime(power, 1);
