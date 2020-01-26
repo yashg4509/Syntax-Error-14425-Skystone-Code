@@ -19,10 +19,11 @@ public class AutoComp3 extends LinearOpMode {
 
         while (opModeIsActive()) {
             strafeForwardTime(power, 1.75);
-            rotate(-0.375);
+            pause(0.5);
+            rotate(-0.375, 1); //rotate 135 degrees
             strafeForwardTime(power, 1);
             strafeSideTime(1, 1);
-            rotate(-0.125);
+            rotate(-0.125, 1); //rotate 45 degrees
             strafeForwardTime(power, 0.5);
             strafeSideTime(-power, 2);
 
@@ -82,7 +83,7 @@ public class AutoComp3 extends LinearOpMode {
 
     }
 
-    private void rotate(double power) {
+    private void rotate(double power, double time) {
 
         //negative power: rotate counterclockwise (left), positive power: rotate clockwise (right)
         double x1 = power;
@@ -92,10 +93,14 @@ public class AutoComp3 extends LinearOpMode {
         double fl = -x1;
         double fr = x1;
 
-        robot.LBmotor.setPower(bl);
-        robot.RBmotor.setPower(br);
-        robot.LFmotor.setPower(fl);
-        robot.RFmotor.setPower(fr);
+        runtime.reset();
+
+        while (runtime.seconds() < time) {
+            robot.LBmotor.setPower(bl);
+            robot.RBmotor.setPower(br);
+            robot.LFmotor.setPower(fl);
+            robot.RFmotor.setPower(fr);
+        }
 
 
         robot.LBmotor.setPower(0);
@@ -105,4 +110,10 @@ public class AutoComp3 extends LinearOpMode {
 
     }
 
+    public void pause (double time) {
+        runtime.reset();
+        while(runtime.seconds() < time) {
+            return;
+        }
+    }
 }
