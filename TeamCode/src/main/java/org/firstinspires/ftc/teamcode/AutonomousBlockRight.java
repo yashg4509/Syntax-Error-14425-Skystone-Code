@@ -78,53 +78,22 @@ public class AutonomousBlockRight extends LinearOpMode{
 //        robot.mFrontLeft.setPower(-power);
 //        robot.mFrontRight.setPower(power);
 //    }
-
-    public void shiftLeft (double power, double time) {
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < time)) {
-            robot.mBackRight.setPower(power);
-            robot.mFrontRight.setPower(-power);
-        }
-    }
-
-    public void shiftRight (double power, double time) {
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < time)) {
-            robot.mBackLeft.setPower(-power);
-            robot.mFrontLeft.setPower(power);
-        }
-    }
-
-//    public void shiftRight (double power) {
-//        robot.mBackLeft.setPower(-power);
-//        robot.mFrontLeft.setPower(power);
+//
+//    double pow = 1.0;
+//
+//    public void pause (double time) {
+//        runtime.reset();
+//        if (opModeIsActive() && (runtime.seconds() >= time)) {
+//            return;
+//        }
 //    }
-
-    public void turnRight (double power, double time) {
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < time)) {
-            robot.mBackLeft.setPower(-power);
-            robot.mFrontLeft.setPower(-power);
-            robot.mBackRight.setPower(-power);
-            robot.mFrontRight.setPower(-power);
-        }
-    }
-
-    public void turnLeft (double power, double time) {
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < time)) {
-            robot.mBackLeft.setPower(power);
-            robot.mFrontLeft.setPower(power);
-            robot.mBackRight.setPower(power);
-            robot.mFrontRight.setPower(power);
-        }
-    }
-
-//    public void turnLeft (double power) {
-//        robot.mBackLeft.setPower(power);
-//        robot.mFrontLeft.setPower(power);
-//        robot.mBackRight.setPower(power);
-//        robot.mFrontRight.setPower(power);
+//
+//    public void forward (double power, double time) {
+//        runtime.reset();
+//        while (opModeIsActive() && (runtime.seconds() < time)) {
+//            robot.mBackLeft.setPower(power);
+//            robot.mBackRight.setPower(-power);
+//        }
 //    }
 
     public void raiseClaw() {
