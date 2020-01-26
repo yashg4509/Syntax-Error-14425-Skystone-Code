@@ -10,12 +10,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class MainTeleOp extends LinearOpMode {
 
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
-    HardwareConfig robot2 = new HardwareConfig();
 
     @Override
     public void runOpMode() {
-        robot.init(hardwareMap); //giv
-        // ing robot hardware map config
+        robot.init(hardwareMap);
+        //giving robot hardware map config
 
 
         waitForStart(); //when start is pressed opModeIsActive returns true; will return false when stopped
@@ -37,38 +36,47 @@ public class MainTeleOp extends LinearOpMode {
             double MIN_POSITION = 0;
             double MAX_POSITION = 1;
 
-
             //driving
             robot.LFmotor.setPower(leftY + rightX + leftX);
             robot.RFmotor.setPower(leftY - rightX - leftX);
             robot.LBmotor.setPower(leftY + rightX - leftX);
             robot.RBmotor.setPower(leftY - rightX + leftX);
 
+            /*
+            Expansion Hub 2:
+            port 0 = left lift motor
+            port 1 = right lift motor
+             */
 
-            /* COMPLIANT WHEELS - left trigger/right trigger */
-            double wheelOuttake = gamepad1.right_trigger;
-            double wheelIntake = -gamepad1.left_trigger;
-            //
+            /* lift motors - left trigger/right trigger */
+            /*right trigger = move lift down
+            left trigger = move lift up
+             */
+
+            double liftUp = gamepad1.right_trigger;
+            double liftDown = -gamepad1.left_trigger;
+
             if (gamepad1.left_trigger > 0) {
-                robot.LCompliantmotor.setPower(wheelIntake);
-                robot.RCompliantmotor.setPower(wheelIntake);
+                robot.Lliftmotor.setPower(liftDown);
+                robot.Rliftmotor.setPower(liftDown);
             } else if (gamepad1.right_trigger > 0) {
-                robot.LCompliantmotor.setPower(wheelOuttake);
-                robot.RCompliantmotor.setPower(wheelOuttake);
+                robot.Lliftmotor.setPower(liftUp);
+                robot.Rliftmotor.setPower(liftUp);
             } else {
-                robot.LCompliantmotor.setPower(0);
-                robot.RCompliantmotor.setPower(0);
+                robot.Lliftmotor.setPower(0);
+                robot.Rliftmotor.setPower(0);
             }
+
         }
     }
 }
-
 
 /*
         //left stick controls direction, right stick controls rotation
         while (opModeIsActive()) {
             double x1 = -gamepad1.left_stick_x;
             double y1 = gamepad1.left_stick_y;
+
             double x2 = gamepad1.right_stick_x;
 
             boolean rotYAdd = gamepad1.dpad_down;

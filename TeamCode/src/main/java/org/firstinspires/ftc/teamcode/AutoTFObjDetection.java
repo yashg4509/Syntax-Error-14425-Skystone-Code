@@ -1,4 +1,4 @@
-
+/*
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -36,17 +36,22 @@ public class AutoTFObjDetection extends LinearOpMode {
      * Once you've obtained a license key, copy the string from the Vuforia web site
      * and paste it in to your code on the next line, between the double quotes.
      */
+/*
     private static final String VUFORIA_KEY =
             "ATCuYNf/////AAABmZa/DKuGq0G0p8X+35HS1RYv9KBP8kSXml5sMxZZzWCe+5UCtQsqGCEYUSfRk//1M+8f9Shi+IW5MOPKZrb9XvFKgKzh2jFbT2lsmNhPyfogRSdDiyvz9a0Raj5N/5koKhkTmU1m9IyIjsPs5LqjlcTdwUw/EddgXHkdslgeiGIqojAOP2XPn1iYiqDISkUqd34NEIvI+8fVMQ4ETbsIRV4vknjZg730MnhEnrSfw/miXSHYFnnHncTCTpF6DGh57kAamYciV2o0nIuYXR8O9wv2AE2tfaLDHNQYDWWrDsX/3JhFtIUZ0uz42ySTFlrdIwAxNfnsrVwheTl8pKfrRJmLYWPQWKx2Gb7k/f7j/Cqe";
      /* {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
      */
+
+/*
     private VuforiaLocalizer vuforia;
 
     /**
      * {@link #tfod} is the variable we will use to store our instance of the TensorFlow Object
      * Detection engine.
      */
+
+/*
     private TFObjectDetector tfod;
 
     @Override
@@ -62,15 +67,14 @@ public class AutoTFObjDetection extends LinearOpMode {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
-        /**
-         * Activate TensorFlow Object Detection before we wait for the start command.
-         * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
-         **/
+        //Activate TensorFlow Object Detection before we wait for the start command.
+         //Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
+
         if (tfod != null) {
             tfod.activate();
         }
 
-        /** Wait for the game to begin */
+//Wait for the game to begin
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -104,13 +108,15 @@ public class AutoTFObjDetection extends LinearOpMode {
         }
     }
 
-    /**
-     * Initialize the Vuforia localization engine.
-     */
+
+     //Initialize the Vuforia localization engine.
+
     private void initVuforia() {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
          */
+
+/*
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
@@ -122,9 +128,8 @@ public class AutoTFObjDetection extends LinearOpMode {
         // Loading trackables is not necessary for the TensorFlow Object Detection engine.
     }
 
-    /**
-     * Initialize the TensorFlow Object Detection engine.
-     */
+//Initialize the TensorFlow Object Detection engine.
+
     private void initTfod() {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
             "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -184,5 +189,5 @@ public class AutoTFObjDetection extends LinearOpMode {
         robot.mFrontRight.setPower(0);
 
     }
-
-}
+    }
+    */

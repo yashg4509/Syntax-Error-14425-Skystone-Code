@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -23,12 +24,10 @@ public class ServoTestingConfig {
 //    Servo intakeServo;
 
 
-
-    /*
     Servo servoClawBot;
     Servo servoClawTop;
     Servo servoClawOne;
-    Servo servoClawTwo;*/
+    Servo servoClawTwo;
 
     public void init(HardwareMap hw) { //creating hardware map, setting up hardware map
         mFrontRight = hw.dcMotor.get("frontRight");
@@ -49,7 +48,7 @@ public class ServoTestingConfig {
         /*servoClawBot = hw.servo.get("servoClawBottom");
         servoClawTop = hw.servo.get("servoClawTop");
         servoClawOne = hw.servo.get("servoClawOne");
-        servoClawTwo = hw.servo.get("servoClawTwo");*/
+        servoClawTwo = hw.servo.get("servoClawTwo");
 
 //        intakeServo = hw.servo.get("succ");
 
@@ -85,5 +84,5 @@ public class ServoTestingConfig {
 
     }
 }
-
+*/
 

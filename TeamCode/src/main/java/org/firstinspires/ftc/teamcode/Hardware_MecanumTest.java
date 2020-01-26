@@ -15,8 +15,10 @@ class Hardware_MecanumTest {
     DcMotor RFmotor;
     DcMotor RBmotor;
 
-    DcMotor LCompliantmotor;
-    DcMotor RCompliantmotor;
+    DcMotor Lliftmotor;
+    DcMotor Rliftmotor;
+
+    Servo claw;
 
     public void init(HardwareMap hwMap){
 
@@ -26,29 +28,27 @@ class Hardware_MecanumTest {
         RFmotor = hwMap.dcMotor.get("RFmotor");
         RBmotor = hwMap.dcMotor.get("RBmotor");
 
-        LCompliantmotor = hwMap.dcMotor.get("RCmotor");
-        RCompliantmotor = hwMap.dcMotor.get("LCmotor");
-
-
+        Lliftmotor = hwMap.dcMotor.get("Lliftmotor");
+        Rliftmotor = hwMap.dcMotor.get("Rliftmotor");
 
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LCompliantmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RCompliantmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Lliftmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Rliftmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // set direction of motors facing opposite directions
         // DcMotors: Clockwise by default; clockwise on left side = forward
-        // FRONT = non-compliant wheels
+
         LFmotor.setDirection(DcMotor.Direction.FORWARD);
         LBmotor.setDirection(DcMotor.Direction.FORWARD);
         RFmotor.setDirection(DcMotor.Direction.REVERSE);
         RBmotor.setDirection(DcMotor.Direction.REVERSE);
 
-        LCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
+       Lliftmotor.setDirection(DcMotorSimple.Direction.REVERSE);
+       Rliftmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //set pwr to 0
         LFmotor.setPower(0.0);
@@ -56,8 +56,8 @@ class Hardware_MecanumTest {
         RFmotor.setPower(0.0);
         RBmotor.setPower(0.0);
 
-        LCompliantmotor.setPower(0.0);
-        RCompliantmotor.setPower(0.0);
+        Lliftmotor.setPower(0.0);
+        Rliftmotor.setPower(0.0);
 
     }
 }

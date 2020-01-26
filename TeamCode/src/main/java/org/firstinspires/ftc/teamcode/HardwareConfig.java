@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -16,7 +17,7 @@ public class HardwareConfig {
     DcMotor LinearActuator;
     Servo ClawServo;
     Servo flipClaw;
-    //    DcMotor markerMotor;
+//    DcMotor markerMotor;
 //    DcMotor armTop;
 //    DcMotor armBot;
 //    DcMotor liftMotor;
@@ -27,11 +28,11 @@ public class HardwareConfig {
 
 
 
-    /*
-    Servo servoClawBot;
-    Servo servoClawTop;
-    Servo servoClawOne;
-    Servo servoClawTwo;*/
+
+   // Servo servoClawBot;
+   // Servo servoClawTop;
+   // Servo servoClawOne;
+   // Servo servoClawTwo;
 
     public void init(HardwareMap hw) { //creating hardware map, setting up hardware map
         mFrontRight = hw.dcMotor.get("frontRight");
@@ -58,6 +59,8 @@ public class HardwareConfig {
 
 
         //set to stopping
+
+/*
         mFrontRight.setPower(0.0);
         mBackRight.setPower(0.0);
         mFrontLeft.setPower(0.0);
@@ -87,3 +90,5 @@ public class HardwareConfig {
         mFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 }
+
+ */
