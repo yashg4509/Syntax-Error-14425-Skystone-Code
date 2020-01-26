@@ -3,13 +3,17 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @TeleOp(name="TeleOp: MecanumTestv1", group="Linear Opmode")
 
 public class MainTeleOp extends LinearOpMode {
 
+    ElapsedTime runtime = new ElapsedTime();
+
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
+
 
     @Override
     public void runOpMode() {
@@ -69,6 +73,82 @@ public class MainTeleOp extends LinearOpMode {
 
         }
     }
+
+
+    private void strafeForwardTime(double power, double time) {
+        //negative power: strafe back, positive power: strafe forward
+        double y1 = -power;
+
+        double bl = y1;
+        double br = y1;
+        double fl = y1;
+        double fr = y1;
+
+        runtime.reset();
+        while (runtime.seconds() < time) {
+            robot.LBmotor.setPower(bl);
+            robot.RBmotor.setPower(br);
+            robot.LFmotor.setPower(fl);
+            robot.RFmotor.setPower(fr);
+        }
+        runtime.reset();
+
+        robot.LBmotor.setPower(0);
+        robot.RBmotor.setPower(0);
+        robot.LFmotor.setPower(0);
+        robot.RFmotor.setPower(0);
+
+    }
+
+    private void strafeSideTime(double power, double time) {
+
+        //negative power: strafe left, positive power: strafe right
+        double x2 = power;
+
+        double bl = x2;
+        double br = -x2;
+        double fl = -x2;
+        double fr = x2;
+
+        runtime.reset();
+        while (runtime.seconds() < time) {
+            robot.LBmotor.setPower(bl);
+            robot.RBmotor.setPower(br);
+            robot.LFmotor.setPower(fl);
+            robot.RFmotor.setPower(fr);
+        }
+        runtime.reset();
+
+        robot.LBmotor.setPower(0);
+        robot.RBmotor.setPower(0);
+        robot.LFmotor.setPower(0);
+        robot.RFmotor.setPower(0);
+
+    }
+
+//    public void strafe() {
+//        double rightStickY = -gamepad1.right_stick_y;
+//        double leftStickY = -gamepad1.left_stick_y;
+//        boolean rightBumper = gamepad1.right_bumper;
+//        boolean leftBumper = gamepad1.right_bumper;
+//
+//        if(rightBumper) {
+//            robot.LFmotor.setPower(1);
+//            robot.LBmotor.setPower(1);
+//            robot.RBmotor.setPower(-1);
+//            robot.RFmotor.setPower(-1);
+//        } else if (leftBumper) {
+//            robot.LFmotor.setPower(-1);
+//            robot.LBmotor.setPower(1);
+//            robot.RBmotor.setPower(1);
+//            robot.RFmotor.setPower(-1);
+//        } else {
+//            robot.LFmotor.setPower(leftStickY);
+//            robot.LBmotor.setPower(leftStickY);
+//            robot.RBmotor.setPower(-rightStickY);
+//            robot.RFmotor.setPower(-rightStickY);
+//        }
+//    }
 }
 
 /*
@@ -124,10 +204,10 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     public void robotDrive(double bl, double br, double fl, double fr) {
-        robot.mBackLeft.setPower(-bl);
-        robot.mBackRight.setPower(-br);
-        robot.mFrontLeft.setPower(-fl);
-        robot.mFrontRight.setPower(-fr);
+        robot.LBmotor.setPower(-bl);
+        robot.RBmotor.setPower(-br);
+        robot.LFmotor.setPower(-fl);
+        robot.RFmotor.setPower(-fr);
     }
 
 
