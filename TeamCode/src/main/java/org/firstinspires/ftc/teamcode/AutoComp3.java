@@ -116,6 +116,20 @@ public class AutoComp3 extends LinearOpMode {
         robot.claw.setPosition(0);
     }
 
+    public void liftClaw() {
+        double liftUp = 1.0;
+
+        robot.Lliftmotor.setPower(liftUp);
+        robot.Rliftmotor.setPower(liftUp);
+    }
+
+    public void lowerClaw() {
+        double liftDown = -1.0;
+
+        robot.Lliftmotor.setPower(liftDown);
+        robot.Rliftmotor.setPower(liftDown);
+    }
+
 
     public void pause (double time) {
         runtime.reset();

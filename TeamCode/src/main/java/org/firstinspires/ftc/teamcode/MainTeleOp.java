@@ -57,6 +57,7 @@ public class MainTeleOp extends LinearOpMode {
             left trigger = move lift up
              */
 
+
             double liftUp = gamepad1.right_trigger;
             double liftDown = -gamepad1.left_trigger;
 
