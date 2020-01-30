@@ -102,18 +102,26 @@ public class AutoComp3 extends LinearOpMode {
             robot.RFmotor.setPower(fr);
         }
 
-
         robot.LBmotor.setPower(0);
         robot.RBmotor.setPower(0);
         robot.LFmotor.setPower(0);
         robot.RFmotor.setPower(0);
-
     }
+
+    private void clawOpen() {
+        robot.claw.setPosition(0.9);
+    }
+
+    private void clawClose() {
+        robot.claw.setPosition(0);
+    }
+
 
     public void pause (double time) {
         runtime.reset();
         while(runtime.seconds() < time) {
-            return;
+            continue;
         }
+        return;
     }
 }
