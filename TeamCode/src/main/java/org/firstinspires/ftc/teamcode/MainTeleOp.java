@@ -57,6 +57,7 @@ public class MainTeleOp extends LinearOpMode {
             left trigger = move lift up
              */
 
+
             double liftUp = gamepad1.right_trigger;
             double liftDown = -gamepad1.left_trigger;
 
@@ -69,6 +70,17 @@ public class MainTeleOp extends LinearOpMode {
             } else {
                 robot.Lliftmotor.setPower(0);
                 robot.Rliftmotor.setPower(0);
+            }
+
+
+            boolean clawOpen = gamepad1.right_bumper;
+            boolean clawClose = gamepad1.left_bumper;
+
+            if (clawOpen) {
+                robot.claw.setPosition(0.9);
+            }
+            else if (clawClose) {
+                robot.claw.setPosition(0.0);
             }
 
         }
@@ -125,6 +137,23 @@ public class MainTeleOp extends LinearOpMode {
         robot.RFmotor.setPower(0);
 
     }
+
+    public void liftClaw() {
+        double liftUp = gamepad1.right_trigger;
+        double liftDown = -gamepad1.left_trigger;
+
+        if (gamepad1.left_trigger > 0) {
+            robot.Lliftmotor.setPower(liftDown);
+            robot.Rliftmotor.setPower(liftDown);
+        } else if (gamepad1.right_trigger > 0) {
+            robot.Lliftmotor.setPower(liftUp);
+            robot.Rliftmotor.setPower(liftUp);
+        } else {
+            robot.Lliftmotor.setPower(0);
+            robot.Rliftmotor.setPower(0);
+        }
+    }
+
 
 //    public void strafe() {
 //        double rightStickY = -gamepad1.right_stick_y;
