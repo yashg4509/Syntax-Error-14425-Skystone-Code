@@ -76,11 +76,11 @@ public class MainTeleOp extends LinearOpMode {
             boolean clawOpen = gamepad1.right_bumper;
             boolean clawClose = gamepad1.left_bumper;
 
-            if (gamepad1.right_bumper) {
-
+            if (clawOpen) {
+                robot.claw.setPosition(0.9);
             }
-            else if (gamepad1.left_bumper) {
-
+            else if (clawClose) {
+                robot.claw.setPosition(0.0);
             }
 
         }

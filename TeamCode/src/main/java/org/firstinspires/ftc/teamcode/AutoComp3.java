@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="AutoComp3")
@@ -18,16 +19,22 @@ public class AutoComp3 extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            strafeForwardTime(power, 1.75);
+            robot.claw.setPosition(0.1);
             pause(0.5);
-            rotate(-0.375, 1); //rotate 135 degrees
-            strafeForwardTime(power, 1);
-            strafeSideTime(1, 1);
-            rotate(-0.125, 1); //rotate 45 degrees
-            strafeForwardTime(power, 0.5);
-            strafeSideTime(-power, 2);
+            robot.claw.setPosition(0.9);
+            pause(0.5);
+            robot.claw.setPosition(Servo.MAX_POSITION);
+            pause(0.5);
+            robot.claw.setPosition(Servo.MIN_POSITION);
 
-
+//            strafeForwardTime(power, 1.75);
+//            pause(0.5);
+//            rotate(-0.375, 1); //rotate 135 degrees
+//            strafeForwardTime(power, 1);
+//            strafeSideTime(1, 1);
+//            rotate(-0.125, 1); //rotate 45 degrees
+//            strafeForwardTime(power, 0.5);
+//            strafeSideTime(-power, 2);
         }
 
     }
@@ -109,6 +116,7 @@ public class AutoComp3 extends LinearOpMode {
     }
 
     private void clawOpen() {
+        System.out.println(robot.claw.getPosition());
         robot.claw.setPosition(0.9);
     }
 
