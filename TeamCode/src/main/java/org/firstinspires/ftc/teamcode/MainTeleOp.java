@@ -89,7 +89,7 @@ public class MainTeleOp extends LinearOpMode {
 
     private void strafeForwardTime(double power, double time) {
         //negative power: strafe back, positive power: strafe forward
-        double y1 = -power;
+        double y1 = -3 * power;
 
         double bl = y1;
         double br = y1;
@@ -115,7 +115,7 @@ public class MainTeleOp extends LinearOpMode {
     private void strafeSideTime(double power, double time) {
 
         //negative power: strafe left, positive power: strafe right
-        double x2 = power;
+        double x2 = 3 * power;
 
         double bl = x2;
         double br = -x2;
