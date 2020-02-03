@@ -52,6 +52,8 @@ class Hardware_MecanumTest {
        Lliftmotor.setDirection(DcMotorSimple.Direction.REVERSE);
        Rliftmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
+       claw.setDirection(Servo.Direction.FORWARD);
+
         //set pwr to 0
         LFmotor.setPower(0.0);
         LBmotor.setPower(0.0);

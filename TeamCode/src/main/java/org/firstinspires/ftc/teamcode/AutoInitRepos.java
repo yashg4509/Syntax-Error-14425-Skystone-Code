@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="AutoComp3")
+@Autonomous(name="AutoInitRepos")
 
-public class AutoComp3 extends LinearOpMode {
+public class AutoInitRepos extends LinearOpMode {
     ElapsedTime runtime = new ElapsedTime();
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
     int power = 1;
@@ -19,22 +19,20 @@ public class AutoComp3 extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            robot.claw.setPosition(0.1);
+            //REPOSITIONING WO TO PARKING
+            strafeForwardTime(power, 3.25);
             pause(0.5);
-            robot.claw.setPosition(0.9);
-            pause(0.5);
-            robot.claw.setPosition(Servo.MAX_POSITION);
-            pause(0.5);
-            robot.claw.setPosition(Servo.MIN_POSITION);
+            rotate(0.375, 3); //rotate 135 degrees
+//            rotate(0.722, 1); //rotate 135 degrees
+            strafeForwardTime(power, 1.5);
+            strafeSideTime(1, 5);
 
-//            strafeForwardTime(power, 1.75);
-//            pause(0.5);
-//            rotate(-0.375, 1); //rotate 135 degrees
-//            strafeForwardTime(power, 1);
-//            strafeSideTime(1, 1);
+
 //            rotate(-0.125, 1); //rotate 45 degrees
 //            strafeForwardTime(power, 0.5);
-//            strafeSideTime(-power, 2);
+//            strafeSideTime(-power, 3.5);
+
+
         }
 
     }

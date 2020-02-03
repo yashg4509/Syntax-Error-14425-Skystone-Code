@@ -13,15 +13,14 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name = "AutonomousBlockLeft")
+@Autonomous(name = "Auto15146")
 
-public class AutonomousBlockLeft extends LinearOpMode{
+public class Auto15146 extends LinearOpMode{
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
     private ElapsedTime     runtime = new ElapsedTime();
 
     public void runOpMode () {
         robot.init(hardwareMap);
-
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
@@ -40,6 +39,8 @@ public class AutonomousBlockLeft extends LinearOpMode{
 //        forward(pow, 4000);
 //        pause(200);
 //        openClaw();
+
+        pause(16);
 
         strafeForwardTime(1.0, 1.5);
 
@@ -72,6 +73,16 @@ public class AutonomousBlockLeft extends LinearOpMode{
         robot.LFmotor.setPower(0);
         robot.RFmotor.setPower(0);
 
+    }
+
+
+    public void pause (double time) {
+        runtime.reset();
+        int x = 0;
+        while (runtime.seconds() > time) {
+            x+=0;
+        }
+        return;
     }
 
 //    private void strafeSideTime(double power, double time) {
