@@ -18,14 +18,18 @@ public class AutoComp3 extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            strafeForwardTime(power, 1.75);
+            //REPOSITIONING WO TO PARKING
+            strafeForwardTime(power, 3.25);
             pause(0.5);
-            rotate(-0.375, 1); //rotate 135 degrees
-            strafeForwardTime(power, 1);
-            strafeSideTime(1, 1);
-            rotate(-0.125, 1); //rotate 45 degrees
-            strafeForwardTime(power, 0.5);
-            strafeSideTime(-power, 2);
+            rotate(0.375, 3); //rotate 135 degrees
+//            rotate(0.722, 1); //rotate 135 degrees
+            strafeForwardTime(power, 1.5);
+            strafeSideTime(1, 5);
+
+
+//            rotate(-0.125, 1); //rotate 45 degrees
+//            strafeForwardTime(power, 0.5);
+//            strafeSideTime(-power, 3.5);
 
 
         }

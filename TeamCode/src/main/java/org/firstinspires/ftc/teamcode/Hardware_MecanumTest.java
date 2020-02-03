@@ -31,6 +31,8 @@ class Hardware_MecanumTest {
         Lliftmotor = hwMap.dcMotor.get("Lliftmotor");
         Rliftmotor = hwMap.dcMotor.get("Rliftmotor");
 
+        claw = hwMap.servo.get("claw");
+
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -49,6 +51,8 @@ class Hardware_MecanumTest {
 
        Lliftmotor.setDirection(DcMotorSimple.Direction.REVERSE);
        Rliftmotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+       claw.setDirection(Servo.Direction.FORWARD);
 
         //set pwr to 0
         LFmotor.setPower(0.0);
