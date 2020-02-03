@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="AutoComp3")
+@Autonomous(name="AutoInitRepos")
 
-public class AutoComp3 extends LinearOpMode {
+public class AutoInitRepos extends LinearOpMode {
     ElapsedTime runtime = new ElapsedTime();
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
     int power = 1;
