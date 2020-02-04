@@ -59,7 +59,7 @@ public class MainTeleOp extends LinearOpMode {
 
 
             double liftUp = gamepad1.right_trigger;
-            double liftDown = -gamepad1.left_trigger;
+            double liftDown = gamepad1.left_trigger;
 
             if (gamepad1.left_trigger > 0) {
                 robot.Lliftmotor.setPower(liftDown);
@@ -77,10 +77,10 @@ public class MainTeleOp extends LinearOpMode {
             boolean clawClose = gamepad1.left_bumper;
 
             if (clawOpen) {
-                robot.claw.setPosition(0.9);
+                robot.claw.setPosition(Servo.MAX_POSITION);
             }
             else if (clawClose) {
-                robot.claw.setPosition(0.0);
+                robot.claw.setPosition(Servo.MIN_POSITION);
             }
 
         }
