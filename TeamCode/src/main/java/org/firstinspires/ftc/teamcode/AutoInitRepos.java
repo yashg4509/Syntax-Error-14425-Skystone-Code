@@ -20,12 +20,11 @@ public class AutoInitRepos extends LinearOpMode {
 
         while (opModeIsActive()) {
             //REPOSITIONING WO TO PARKING
-            strafeForwardTime(power, 3.25);
+            strafeForwardTime(power, 2.7);
             pause(0.5);
-            rotate(0.375, 3); //rotate 135 degrees
-//            rotate(0.722, 1); //rotate 135 degrees
-            strafeForwardTime(power, 1.5);
-            strafeSideTime(1, 5);
+            rotate(-0.375, 1.5); //rotate 90 degrees
+            strafeForwardTime(power, 1.0);
+            strafeSideTime(-1, 5);
 
 
 //            rotate(-0.125, 1); //rotate 45 degrees
@@ -115,11 +114,11 @@ public class AutoInitRepos extends LinearOpMode {
 
     private void clawOpen() {
         System.out.println(robot.claw.getPosition());
-        robot.claw.setPosition(0.9);
+        robot.claw.setPosition(Servo.MAX_POSITION);
     }
 
     private void clawClose() {
-        robot.claw.setPosition(0);
+        robot.claw.setPosition(Servo.MIN_POSITION);
     }
 
     public void liftClaw() {
