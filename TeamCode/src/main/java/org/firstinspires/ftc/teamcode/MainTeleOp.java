@@ -1,9 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.os.Environment;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 @TeleOp(name="TeleOp: MecanumTestv1", group="Linear Opmode")
@@ -14,7 +21,6 @@ public class MainTeleOp extends LinearOpMode {
 
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
 
-
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -22,7 +28,30 @@ public class MainTeleOp extends LinearOpMode {
 
 
         waitForStart(); //when start is pressed opModeIsActive returns true; will return false when stopped
+
+        runtime.reset();
+        int p = (int)runtime.seconds();
         while (opModeIsActive()) {
+
+
+            File f = new File(Environment.getExternalStorageDirectory() + "/data.txt");
+            try {
+                if(f.createNewFile())
+                {
+                    telemetry.log().add("created new file");
+                }
+                else
+                {
+                    telemetry.log().add("already exists");
+                }
+            }
+            catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+
+
 
             /*
             Expansion Hub 1:
@@ -46,6 +75,27 @@ public class MainTeleOp extends LinearOpMode {
             robot.LBmotor.setPower(leftY + rightX - leftX);
             robot.RBmotor.setPower(leftY - rightX + leftX);
 
+
+            BufferedWriter out = null;
+
+            try {
+                FileWriter fstream = new FileWriter(Environment.getExternalStorageDirectory() + "/data.txt", true); // make code outside loop one day
+                out = new BufferedWriter(fstream);
+
+                out.write(Double.toString(runtime.seconds()) + "\n");
+                out.write(Double.toString(leftX + rightX + leftX) + "\n"); //LF
+                out.write(Double.toString(leftY - rightX - leftX) + "\n"); //RF
+                out.write(Double.toString(leftX + rightX - leftX) + "\n"); //LB
+                out.write(Double.toString(leftY - rightX + leftX) + "\n"); //RB
+
+                out.close();
+            }
+
+            catch (IOException e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+
+
             /*
             Expansion Hub 2:
             port 0 = left lift motor
@@ -59,14 +109,14 @@ public class MainTeleOp extends LinearOpMode {
 
 
             double liftUp = gamepad1.right_trigger;
-            double liftDown = gamepad1.left_trigger;
+            double liftDown = -gamepad1.left_trigger;
 
             if (gamepad1.left_trigger > 0) {
-                robot.Lliftmotor.setPower(liftDown);
-                robot.Rliftmotor.setPower(liftDown);
+                robot.Lliftmotor.setPower(0.5*liftDown);
+                robot.Rliftmotor.setPower(0.5*liftDown);
             } else if (gamepad1.right_trigger > 0) {
-                robot.Lliftmotor.setPower(liftUp);
-                robot.Rliftmotor.setPower(liftUp);
+                robot.Lliftmotor.setPower(0.5*liftUp);
+                robot.Rliftmotor.setPower(0.5*liftUp);
             } else {
                 robot.Lliftmotor.setPower(0);
                 robot.Rliftmotor.setPower(0);
@@ -86,6 +136,8 @@ public class MainTeleOp extends LinearOpMode {
         }
     }
 
+
+    /*
 
     private void strafeForwardTime(double power, double time) {
         //negative power: strafe back, positive power: strafe forward
@@ -137,6 +189,9 @@ public class MainTeleOp extends LinearOpMode {
         robot.RFmotor.setPower(0);
 
     }
+
+    */
+
 
     public void liftClaw() {
         double liftUp = gamepad1.right_trigger;
