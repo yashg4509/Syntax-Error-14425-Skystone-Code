@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Autonomous(name = "AutoReplay")
 
@@ -32,17 +33,19 @@ public class AutoReplay extends LinearOpMode{
         telemetry.update();
 
         waitForStart();
+        File file = new File("autodata.txt");
 
         ArrayList<String> commands = new ArrayList<String>();
         try {
-            File file = new File("autodata.txt");
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            Scanner sc = new Scanner(file);
 
-        String st;
-        commands = new ArrayList<String>(); // ew
+            String st;
+            commands = new ArrayList<String>(); // ew
+            while (sc.hasNext())
+            {
+                commands.add(sc.nextLine());
+            }
 
-        while ((st = br.readLine()) != null)
-            commands.add(st);
 
         } catch (IOException e) {
 
