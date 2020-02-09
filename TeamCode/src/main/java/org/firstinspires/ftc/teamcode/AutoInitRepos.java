@@ -21,21 +21,21 @@ public class AutoInitRepos extends LinearOpMode {
         while (opModeIsActive()) {
             //REPOSITIONING WO TO PARKING
 
-            strafeForwardTime(-power, 2.8);
+            strafeForwardTime(-power, 2.8); //forward for 2.8 seconds
 
-            pause(0.5);
+            pause(0.5); //delay for 0.5 seconds
 
-            rotate(-0.125, 1);
+            rotate(-0.125, 1); //rotate 45 degrees counterclockwise for a second
 
-            pause(0.5);
+            pause(0.5); //pause for half a second
 
-            strafeForwardTime(-power, 2.0);
+            strafeForwardTime(-power, 2.0); //forward for 2 seconds
 
-            pause(3);
+            pause(3); //pause for 3 seconds
 
-            strafeSideTime(power, 2);
+            strafeSideTime(power, 2); //move right for 2 seconds
 
-            pause(20);
+//            pause(20); //pause for the remainder of auto
 
 //            rotate(-0.125, 1); //rotate 45 degrees
 //            strafeForwardTime(power, 0.5);
