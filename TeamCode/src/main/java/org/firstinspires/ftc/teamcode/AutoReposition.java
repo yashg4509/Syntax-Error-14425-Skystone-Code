@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@Autonomous(name = "AutoReplay")
+@Autonomous(name = "AutoReposition")
 
 
-public class AutoReplay extends LinearOpMode{
+public class AutoReposition extends LinearOpMode{
     Hardware_MecanumTest robot = new Hardware_MecanumTest();
     private ElapsedTime     runtime = new ElapsedTime();
 
@@ -36,7 +36,7 @@ public class AutoReplay extends LinearOpMode{
         telemetry.update();
 
         waitForStart();
-        File file = new File(Environment.getExternalStorageDirectory() + "/autoblock.txt");
+        File file = new File(Environment.getExternalStorageDirectory() + "/autoreposition.txt");
 
         telemetry.addData("Status", "opened file");    //
         telemetry.update();
@@ -67,61 +67,61 @@ public class AutoReplay extends LinearOpMode{
         int testcount = 0;
         while (opModeIsActive()) {
             //REPOSITIONING WO TO PARKING
-                double lf = 0, rf = 0, lb = 0, rb = 0;
-                double lliftpower = 0, rliftpower = 0, servopos = 0;
-                double mindist = 999999.0;
+            double lf = 0, rf = 0, lb = 0, rb = 0;
+            double lliftpower = 0, rliftpower = 0, servopos = 0;
+            double mindist = 999999.0;
 
-                double matchtime = runtime.seconds();
+            double matchtime = runtime.seconds();
 
-                int l = 0, r = commands.size() / 8, mid = (l + r) / 2;
-                while(l < r)
-                {
-                    mid = (l+r)/2;
-                    telemetry.addData("bs", "searching...");
-                    telemetry.update();
-                    if(Double.valueOf(commands.get(8*mid)) < matchtime)
-                    {
-                        l = mid + 1;
-                    }
-                    else
-                    {
-                        r = mid - 1;
-                    }
-                }
-
-                telemetry.addData("bs", "running");
-                telemetry.addData("time", Double.toString(runtime.seconds()));
-
-                lf = Double.valueOf(commands.get(8*mid + 1));
-                rf = Double.valueOf(commands.get(8*mid + 2));
-                lb = Double.valueOf(commands.get(8*mid + 3));
-                rb = Double.valueOf(commands.get(8*mid + 4));
-
-                lliftpower = Double.valueOf(commands.get(8*mid+5));
-                rliftpower = Double.valueOf(commands.get(8*mid+6));
-
-                servopos = Double.valueOf(commands.get(8*mid+7));
-
-
-                telemetry.addData("lf", Double.toString(lf));
-                telemetry.addData("rf", Double.toString(rf));
-                telemetry.addData("lb", Double.toString(lb));
-                telemetry.addData("rb", Double.toString(rb));
-
-                telemetry.addData("llift", Double.toString(lliftpower));
-                telemetry.addData("rlift", Double.toString(rliftpower));
-                telemetry.addData("servo", Double.toString(servopos));
-
+            int l = 0, r = commands.size() / 8, mid = (l + r) / 2;
+            while(l < r)
+            {
+                mid = (l+r)/2;
+                telemetry.addData("bs", "searching...");
                 telemetry.update();
+                if(Double.valueOf(commands.get(8*mid)) < matchtime)
+                {
+                    l = mid + 1;
+                }
+                else
+                {
+                    r = mid - 1;
+                }
+            }
 
-                robot.LFmotor.setPower(lf);
-                robot.RFmotor.setPower(rf);
-                robot.LBmotor.setPower(lb);
-                robot.RBmotor.setPower(rb);
+            telemetry.addData("bs", "running");
+            telemetry.addData("time", Double.toString(runtime.seconds()));
 
-                robot.Lliftmotor.setPower(lliftpower);
-                robot.Rliftmotor.setPower(rliftpower);
-                robot.claw.setPosition(servopos);
+            lf = Double.valueOf(commands.get(8*mid + 1));
+            rf = Double.valueOf(commands.get(8*mid + 2));
+            lb = Double.valueOf(commands.get(8*mid + 3));
+            rb = Double.valueOf(commands.get(8*mid + 4));
+
+            lliftpower = Double.valueOf(commands.get(8*mid+5));
+            rliftpower = Double.valueOf(commands.get(8*mid+6));
+
+            servopos = Double.valueOf(commands.get(8*mid+7));
+
+
+            telemetry.addData("lf", Double.toString(lf));
+            telemetry.addData("rf", Double.toString(rf));
+            telemetry.addData("lb", Double.toString(lb));
+            telemetry.addData("rb", Double.toString(rb));
+
+            telemetry.addData("llift", Double.toString(lliftpower));
+            telemetry.addData("rlift", Double.toString(rliftpower));
+            telemetry.addData("servo", Double.toString(servopos));
+
+            telemetry.update();
+
+            robot.LFmotor.setPower(lf);
+            robot.RFmotor.setPower(rf);
+            robot.LBmotor.setPower(lb);
+            robot.RBmotor.setPower(rb);
+
+            robot.Lliftmotor.setPower(lliftpower);
+            robot.Rliftmotor.setPower(rliftpower);
+            robot.claw.setPosition(servopos);
 
         }
 

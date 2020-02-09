@@ -34,7 +34,7 @@ public class MainTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
 
 
-            File f = new File(Environment.getExternalStorageDirectory() + "/data.txt");
+            File f = new File(Environment.getExternalStorageDirectory() + "/autoreposition.txt");
             try {
                 if(f.createNewFile())
                 {
@@ -44,11 +44,16 @@ public class MainTeleOp extends LinearOpMode {
                 {
                     telemetry.log().add("already exists");
                 }
+
+                //new FileWriter(Environment.getExternalStorageDirectory() + "/autotest1.txt", false).close();
             }
             catch (IOException e) {
+                telemetry.log().add(e.getMessage());
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
+
+
 
 
 
@@ -76,17 +81,63 @@ public class MainTeleOp extends LinearOpMode {
             robot.RBmotor.setPower(leftY - rightX + leftX);
 
 
+
+            double liftUp = gamepad1.right_trigger;
+            double liftDown = -gamepad1.left_trigger;
+
+            double lliftpower = 0.0, rliftpower = 0.0;
+
+            if (gamepad1.left_trigger > 0) {
+                lliftpower = 0.5*liftDown;
+                rliftpower = 0.5*liftDown;
+                robot.Lliftmotor.setPower(0.5*liftDown);
+                robot.Rliftmotor.setPower(0.5*liftDown);
+            } else if (gamepad1.right_trigger > 0) {
+
+                lliftpower = 0.5 * liftUp;
+                rliftpower = 0.5 * liftUp;
+                robot.Lliftmotor.setPower(0.5*liftUp);
+                robot.Rliftmotor.setPower(0.5*liftUp);
+            } else {
+
+                lliftpower = 0;
+                rliftpower = 0;
+                robot.Lliftmotor.setPower(0);
+                robot.Rliftmotor.setPower(0);
+            }
+
+
+            boolean clawOpen = gamepad1.right_bumper;
+            boolean clawClose = gamepad1.left_bumper;
+
+            double servopos = 0;
+
+            if (clawOpen) {
+                robot.claw.setPosition(Servo.MAX_POSITION);
+                servopos = Servo.MAX_POSITION;
+            }
+            else if (clawClose) {
+                robot.claw.setPosition(Servo.MIN_POSITION);
+                servopos = Servo.MIN_POSITION;
+            }
+
             BufferedWriter out = null;
 
             try {
-                FileWriter fstream = new FileWriter(Environment.getExternalStorageDirectory() + "/data.txt", true); // make code outside loop one day
+                FileWriter fstream = new FileWriter(Environment.getExternalStorageDirectory() + "/autoreposition.txt", true); // make code outside loop one day
                 out = new BufferedWriter(fstream);
 
-                out.write(Double.toString(runtime.seconds()) + "\n");
-                out.write(Double.toString(leftX + rightX + leftX) + "\n"); //LF
+
+                out.write(Double.toString(runtime.seconds()) + "\n"); // someone fix this
+                out.write(Double.toString(leftY + rightX + leftX) + "\n"); //LF
                 out.write(Double.toString(leftY - rightX - leftX) + "\n"); //RF
-                out.write(Double.toString(leftX + rightX - leftX) + "\n"); //LB
+                out.write(Double.toString(leftY + rightX - leftX) + "\n"); //LB
                 out.write(Double.toString(leftY - rightX + leftX) + "\n"); //RB
+
+                out.write(Double.toString(lliftpower) + "\n");
+                out.write(Double.toString(rliftpower) + "\n");
+
+                out.write(Double.toString(servopos) + "\n");
 
                 out.close();
             }
@@ -108,30 +159,6 @@ public class MainTeleOp extends LinearOpMode {
              */
 
 
-            double liftUp = gamepad1.right_trigger;
-            double liftDown = -gamepad1.left_trigger;
-
-            if (gamepad1.left_trigger > 0) {
-                robot.Lliftmotor.setPower(0.5*liftDown);
-                robot.Rliftmotor.setPower(0.5*liftDown);
-            } else if (gamepad1.right_trigger > 0) {
-                robot.Lliftmotor.setPower(0.5*liftUp);
-                robot.Rliftmotor.setPower(0.5*liftUp);
-            } else {
-                robot.Lliftmotor.setPower(0);
-                robot.Rliftmotor.setPower(0);
-            }
-
-
-            boolean clawOpen = gamepad1.right_bumper;
-            boolean clawClose = gamepad1.left_bumper;
-
-            if (clawOpen) {
-                robot.claw.setPosition(Servo.MAX_POSITION);
-            }
-            else if (clawClose) {
-                robot.claw.setPosition(Servo.MIN_POSITION);
-            }
 
         }
     }
