@@ -57,7 +57,7 @@ class Hardware_MecanumTest {
         //set pwr to 0
         LFmotor.setPower(0.0);
         LBmotor.setPower(0.0);
-        RFmotor.setPower(0.0);
+        RFmotor.setPower(1.0);
         RBmotor.setPower(0.0);
 
         Lliftmotor.setPower(0.0);
@@ -65,4 +65,3 @@ class Hardware_MecanumTest {
 
     }
 }
-

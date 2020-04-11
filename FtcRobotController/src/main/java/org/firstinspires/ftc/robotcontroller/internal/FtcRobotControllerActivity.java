@@ -419,6 +419,8 @@ public class FtcRobotControllerActivity extends Activity
         return false;
       }
     });
+
+    FtcDashboard.start();
   }
 
   @Override
